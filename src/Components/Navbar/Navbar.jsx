@@ -4,7 +4,7 @@ import logo from "/images/freshcart-logo.svg";
 function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light  ">
         <div className="container ">
           <a className="navbar-brand" href="#">
             <img src={logo} alt="" />
@@ -24,7 +24,7 @@ function Navbar() {
             className="collapse navbar-collapse mx-auto"
             id="collapsibleNavId"
           >
-            <ul className="navbar-nav mx-auto mt-2 mt-lg-0 justify-content-center">
+            <ul className="navbar-nav mx-auto  mt-2 mt-lg-0 ">
               <li className="nav-item">
                 <Link to="/" className="nav-link">
                   Home
@@ -49,6 +49,23 @@ function Navbar() {
                 <Link className="nav-link" to="#">
                   Brands
                 </Link>
+              </li>
+            </ul>
+            <ul className="navbar-nav   mt-2 mt-lg-0  ">
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">
+                  Register
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a to="/" className="nav-link">
+                  Login
+                </a>
+              </li>
+              <li className="nav-item">
+                <a to="/" className="nav-link">
+                  Login
+                </a>
               </li>
             </ul>
           </div>

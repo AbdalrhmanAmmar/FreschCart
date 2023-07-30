@@ -2,6 +2,7 @@ import Layout from "./../src/Components/Layout/Layout";
 import Home from "./../src/Components/Home/Home";
 import NotFound from "./../src/Components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Register from "./Components/Register/Register";
 function App() {
   let router = createBrowserRouter([
     {
@@ -9,6 +10,8 @@ function App() {
       element: <Layout />,
       children: [
         { index: true, element: <Home /> },
+        { path: "/register", element: <Register /> },
+
         { path: "*", element: <NotFound /> },
       ],
     },
