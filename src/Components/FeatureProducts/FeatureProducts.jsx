@@ -20,7 +20,7 @@ function FeatureProducts() {
         {products.map((product) => (
           <div key={product.id} className="col-md-2">
             <div className="product">
-              <h3 className="h6">{product.title}</h3>
+              <h3 className="h6">{product.title.split(' ').slice(0, 2)}</h3>
             </div>
           </div>
         ))}
