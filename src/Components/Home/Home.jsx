@@ -1,6 +1,6 @@
 import "./Home.module.css";
 function Home() {
-  return <>hello its me</>;
+  return <>hello</>;
 }
 
 export default Home;

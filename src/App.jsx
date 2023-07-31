@@ -3,21 +3,19 @@ import Home from "./../src/Components/Home/Home";
 import NotFound from "./../src/Components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./Components/Register/Register";
-import Login from './Components/Login/Login';
+import Login from "./Components/Login/Login";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
+import ProtectRoute from "./Components/ProtectRoute/ProtectRoute";
+import ProductDetails from "./Components/ProductDetails/ProductDetails";
 function App() {
   useEffect(() => {
-    if (localStorage.getItem('usertocken') !== null) {
-      SaveUserData()
+    if (localStorage.getItem("usertocken") !== null) {
+      SaveUserData();
     }
-    
-  
-    
-  }, [])
-  
-  const [userData, setuserDate] = useState(null)
+  }, []);
 
+  const [userData, setuserDate] = useState(null);
 
   function SaveUserData() {
     let encodedtoken = localStorage.getItem("usertocken");
@@ -25,13 +23,27 @@ function App() {
     setuserDate(decodedtoken);
   }
 
-
   let router = createBrowserRouter([
     {
       path: "",
       element: <Layout userData={userData} setuserDate={setuserDate} />,
       children: [
-        { index: true, element: <Home /> },
+        {
+          index: true,
+          element: (
+            <ProtectRoute>
+              <Home />
+            </ProtectRoute>
+          ),
+        },
+        {
+          path: "/Products",
+          element: (
+            <ProtectRoute>
+              <ProductDetails />
+            </ProtectRoute>
+          ),
+        },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login SaveUserData={SaveUserData} /> },
 
