@@ -4,9 +4,18 @@ import NotFound from "./../src/Components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./Components/Register/Register";
 import Login from './Components/Login/Login';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 function App() {
+  useEffect(() => {
+    if (localStorage.getItem('usertocken') !== null) {
+      SaveUserData()
+    }
+    
+  
+    
+  }, [])
+  
   const [userData, setuserDate] = useState(null)
 
 
