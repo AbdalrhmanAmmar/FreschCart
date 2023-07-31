@@ -3,12 +3,13 @@ import "./Register.module.css";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 let validation = Yup.object({
   name: Yup.string()
     .required("name is required")
     .min(3, "minLength is 3")
-    .max(10, "max length is 15"),
+    .max(15, "max length is 15"),
   email: Yup.string().required("email is required").email("email is not valid"),
   password: Yup.string().required("password is required"),
   rePassword: Yup.string()
@@ -20,6 +21,8 @@ let validation = Yup.object({
 });
 
 function Register() {
+  const [isLoading, setisLoading] = useState(false);
+  const [messageError, setmessageError] = useState("");
   let navigate = useNavigate();
   let formik = useFormik({
     initialValues: {
@@ -31,11 +34,17 @@ function Register() {
     },
     validationSchema: validation,
     onSubmit: async function (values) {
-      let { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/auth/signup`,
-        values
-      );
+      setisLoading(true);
+      let { data } = await axios
+        .post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, values)
+        .catch((errr) => {
+          setisLoading(false);
+
+          setmessageError(`${errr.response.data.message}`);
+        });
+
       if (data.message === "success") {
+        setisLoading(false);
         navigate("/login");
       }
     },
@@ -44,6 +53,12 @@ function Register() {
     <>
       <div className="w-100 mx-auto py-5">
         <h3>Register</h3>
+        {messageError ? (
+          <div className="alert alert-dark" role="alert">
+            {messageError}
+          </div>
+        ) : null}
+
         <form onSubmit={formik.handleSubmit}>
           {formik.errors.name && formik.touched.name ? (
             <div className="alert alert-danger" role="alert">
@@ -120,13 +135,19 @@ function Register() {
             name="phone"
             id="phone"
           />
-          <button
-            disabled={!(formik.isValid && formik.dirty)}
-            type="submit"
-            className="btn bg-main text-white "
-          >
-            Register
-          </button>
+          {isLoading ? (
+            <button type="button" className="btn bg-main text-white ">
+              <i className="fa fa-spinner fa-spin"></i>
+            </button>
+          ) : (
+            <button
+              disabled={!(formik.isValid && formik.dirty)}
+              type="submit"
+              className="btn bg-main text-white "
+            >
+              Register
+            </button>
+          )}
         </form>
       </div>
     </>
