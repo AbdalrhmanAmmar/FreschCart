@@ -1,14 +1,23 @@
 import "./Layout.module.css";
 import Navbar from "./../Navbar/Navbar";
 import Footer from "./../Footer/Footer";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
-function Layout() {
+// eslint-disable-next-line react/prop-types
+function Layout({ userData, setuserDate }) {
+  let navigate = useNavigate();
+
+  function LogOut() {
+    localStorage.removeItem("usertocken");
+    setuserDate(null);
+    navigate("/Login");
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar userData={userData} LogOut={LogOut} />
       <div className="container">
-        <Outlet/>
+        <Outlet />
       </div>
       <Footer />
     </>

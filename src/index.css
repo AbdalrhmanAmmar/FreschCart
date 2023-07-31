@@ -12,6 +12,29 @@
 body {
   font-family: var(--font-family) !important;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 17px !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--light-color);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  transition: all 0.5s;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #05b986;
+}
+
 .rating-color {
   color: var(--rating-color);
 }
@@ -20,7 +43,7 @@ body {
 }
 a,
 a:hover {
-  color: black !important;
+  color: rgb(0, 0, 0) !important;
   text-decoration: none;
   font-weight: 400 !important;
 }

@@ -12,16 +12,14 @@ let validation = Yup.object({
  
 });
 
-function Login() {
+function Login({ SaveUserData }) {
   const [isLoading, setisLoading] = useState(false);
   const [messageError, setmessageError] = useState("");
   let navigate = useNavigate();
   let formik = useFormik({
     initialValues: {
-      
       email: "",
       password: "",
-      
     },
     validationSchema: validation,
     onSubmit: async function (values) {
@@ -35,6 +33,8 @@ function Login() {
         });
 
       if (data.message === "success") {
+        localStorage.setItem("usertocken", data.token);
+        SaveUserData()
         setisLoading(false);
         navigate("/");
       }
@@ -51,7 +51,6 @@ function Login() {
         ) : null}
 
         <form onSubmit={formik.handleSubmit}>
-         
           {formik.errors.email && formik.touched.email ? (
             <div className="alert alert-danger" role="alert">
               {formik.errors.email}
@@ -82,10 +81,7 @@ function Login() {
             name="password"
             id="password"
           />
-         
-    
-  
-          
+
           {isLoading ? (
             <button type="button" className="btn bg-main text-white ">
               <i className="fa fa-spinner fa-spin"></i>

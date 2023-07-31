@@ -4,15 +4,27 @@ import NotFound from "./../src/Components/NotFound/NotFound";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Register from "./Components/Register/Register";
 import Login from './Components/Login/Login';
+import { useState } from "react";
+import jwtDecode from "jwt-decode";
 function App() {
+  const [userData, setuserDate] = useState(null)
+
+
+  function SaveUserData() {
+    let encodedtoken = localStorage.getItem("usertocken");
+    let decodedtoken = jwtDecode(encodedtoken);
+    setuserDate(decodedtoken);
+  }
+
+
   let router = createBrowserRouter([
     {
       path: "",
-      element: <Layout />,
+      element: <Layout userData={userData} setuserDate={setuserDate} />,
       children: [
         { index: true, element: <Home /> },
         { path: "/register", element: <Register /> },
-        { path: "/login", element: <Login /> },
+        { path: "/login", element: <Login SaveUserData={SaveUserData} /> },
 
         { path: "*", element: <NotFound /> },
       ],
