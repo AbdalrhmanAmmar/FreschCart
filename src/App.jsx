@@ -37,7 +37,7 @@ function App() {
           ),
         },
         {
-          path: "/Products",
+          path: "/ProductDetails/:id",
           element: (
             <ProtectRoute>
               <ProductDetails />

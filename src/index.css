@@ -59,7 +59,7 @@ a:hover {
 .product .btn {
   transition: transform 1s, opacity 1s;
   background: var(--main-color);
-  
+
   transform: translateY(100%);
   opacity: 0;
 }
@@ -78,4 +78,24 @@ a:hover {
 }
 .bg-main-light {
   background-color: var(--light-color) !important;
+}
+
+.loader {
+  width: 75px;
+  height: 75px;
+  border: 5px solid var(--main-color);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
