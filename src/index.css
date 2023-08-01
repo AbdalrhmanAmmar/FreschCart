@@ -13,6 +13,11 @@ body {
   font-family: var(--font-family) !important;
 }
 
+.categoryname {
+  color: var(--main-color);
+  font-weight: bold !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -53,6 +58,8 @@ a:hover {
 }
 .product .btn {
   transition: transform 1s, opacity 1s;
+  background: var(--main-color);
+  
   transform: translateY(100%);
   opacity: 0;
 }
