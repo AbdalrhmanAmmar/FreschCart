@@ -6,9 +6,9 @@ function Navbar({ userData, LogOut }) {
     <>
       <nav className="navbar navbar-expand-sm navbar-light bg-light  ">
         <div className="container ">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="/">
             <img src={logo} alt="" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler d-lg-none"
             type="button"

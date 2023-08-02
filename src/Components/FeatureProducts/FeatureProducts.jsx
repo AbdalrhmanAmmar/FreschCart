@@ -14,10 +14,10 @@ function FeatureProducts() {
     setisloading(false);
 
     setproducts(data.data);
-    console.log(data.data);
   }
   useEffect(() => {
     GetProducts();
+    console.log(products);
   }, []);
 
   return (

@@ -29,7 +29,23 @@ function ProductDetails() {
         </div>
       ) : (
         <>
-          <h2>{ProductDetails.title}</h2>
+          <div className="row py-3 align-items-center">
+            <div className="col-md-4">
+              <img className="w-100" src={ProductDetails.imageCover} alt="" />
+            </div>
+            <div className="col-md-8">
+              <h3>{ProductDetails?.title}</h3>
+              <p className="text-muted">{ProductDetails?.description}</p>
+              <div className="d-flex justify-content-between">
+                <span className="text-muted">{ProductDetails?.price} EGP</span>
+                <span>
+                  <i className="fas fa-star rating-color"></i>
+                  {ProductDetails?.ratingsAverage}
+                </span>
+              </div>
+              <button id="btn">+ Add</button>
+            </div>
+          </div>
         </>
       )}
     </>

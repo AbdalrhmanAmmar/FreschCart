@@ -99,3 +99,14 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+
+#btn {
+  background: #0aad0a;
+  color: white !important;
+  border: none;
+  outline: none;
+  width: 100% !important;
+  justify-content: center;
+  border-radius: 13px;
+  padding: 10px 0;
+}
