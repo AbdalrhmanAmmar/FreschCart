@@ -1,8 +1,20 @@
 import axios from "axios";
 import "./FeatureProducts.module.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Counter } from "../../CounterContext";
+import { toast } from "react-hot-toast";
+
 function FeatureProducts() {
+  let { Addtocard } = useContext(Counter);
+
+  async function Addproduct(productId) {
+    let response = await Addtocard(productId);
+    if (response.data.status === "success") {
+      toast(response.data.message);
+    }
+  }
+
   const [products, setproducts] = useState([]);
   const [isloading, setisloading] = useState(false);
   async function GetProducts() {
@@ -47,8 +59,13 @@ function FeatureProducts() {
                         {product.ratingsAverage}
                       </span>
                     </div>
-                    <button className="btn text-white w-100">+ Add</button>
                   </Link>
+                  <button
+                    onClick={() => Addproduct(product._id)}
+                    className="btn text-white w-100"
+                  >
+                    + Add
+                  </button>
                 </div>
               </div>
             ))}

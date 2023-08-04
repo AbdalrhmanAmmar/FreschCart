@@ -10,6 +10,8 @@ import ProtectRoute from "./Components/ProtectRoute/ProtectRoute";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Cart from "./Components/Cart/Cart";
 import CounterContext from "./CounterContext";
+import toast, { Toaster } from "react-hot-toast";
+
 
 function App() {
   useEffect(() => {
@@ -65,6 +67,7 @@ function App() {
   return (
     <div>
       <CounterContext>
+        <Toaster/>
         <RouterProvider router={router} />
       </CounterContext>
     </div>
