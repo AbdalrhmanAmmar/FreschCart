@@ -21,8 +21,22 @@ function CounterContext(props) {
       .then((response) => response)
       .catch((error) => error);
   }
+  function GetCard(productId) {
+    return axios
+      .get(
+        `https://ecommerce.routemisr.com/api/v1/Cart`,
+       
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  }
   return (
-    <Counter.Provider value={{ Addtocard }}>{props.children}</Counter.Provider>
+    <Counter.Provider value={{ Addtocard, GetCard }}>
+      {props.children}
+    </Counter.Provider>
   );
 }
 

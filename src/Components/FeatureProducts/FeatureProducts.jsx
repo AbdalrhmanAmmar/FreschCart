@@ -11,7 +11,7 @@ function FeatureProducts() {
   async function Addproduct(productId) {
     let response = await Addtocard(productId);
     if (response.data.status === "success") {
-      toast(response.data.message);
+      toast.success(response.data.message, { duration: 2000 });
     }
   }
 

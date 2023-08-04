@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom";
 import "./Navbar.module.css";
 import logo from "/images/freshcart-logo.svg";
+import { useContext, useEffect, useState } from "react";
+import { Counter } from "../../CounterContext";
+
 function Navbar({ userData, LogOut }) {
+  const [ProductCount, setProductCount] = useState(null);
+  let { GetCard } = useContext(Counter);
+
+  async function getloggedcart() {
+    let response = await GetCard();
+    if (response?.data?.status === "success") {
+      setProductCount(response.data);
+    }
+    console.log(ProductCount.numOfCartItems);
+  }
+
+  useEffect(() => {
+    getloggedcart();
+  }, []);
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-light bg-light  ">
@@ -31,9 +48,20 @@ function Navbar({ userData, LogOut }) {
                     Home
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/cart">
+                <li className="nav-item car">
+                  <Link className="nav-link position-relative " to="/cart">
                     Cart
+                    <span
+                      className="position-absolute  bg-danger text-white w-10 h-10 rounded text-center"
+                      style={{
+                        width: "23px",
+                        height: "23px",
+                        top: "-6px",
+                        borderRaduis: "50%",
+                      }}
+                    >
+                      {ProductCount?.numOfCartItems}
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
