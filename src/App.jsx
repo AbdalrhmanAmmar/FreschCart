@@ -8,6 +8,9 @@ import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import ProtectRoute from "./Components/ProtectRoute/ProtectRoute";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
+import Cart from "./Components/Cart/Cart";
+import CounterContext from "./CounterContext";
+
 function App() {
   useEffect(() => {
     if (localStorage.getItem("usertocken") !== null) {
@@ -44,6 +47,14 @@ function App() {
             </ProtectRoute>
           ),
         },
+        {
+          path: "/cart",
+          element: (
+            <ProtectRoute>
+              <Cart />
+            </ProtectRoute>
+          ),
+        },
         { path: "/register", element: <Register /> },
         { path: "/login", element: <Login SaveUserData={SaveUserData} /> },
 
@@ -53,7 +64,9 @@ function App() {
   ]);
   return (
     <div>
-      <RouterProvider router={router} />
+      <CounterContext>
+        <RouterProvider router={router} />
+      </CounterContext>
     </div>
   );
 }
