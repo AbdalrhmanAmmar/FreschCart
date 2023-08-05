@@ -13,6 +13,7 @@ function FeatureProducts() {
     if (response.data.status === "success") {
       toast.success(response.data.message, { duration: 2000 });
     }
+    console.log(response);
   }
 
   const [products, setproducts] = useState([]);

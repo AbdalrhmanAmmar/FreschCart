@@ -52,12 +52,12 @@ function Navbar({ userData, LogOut }) {
                   <Link className="nav-link position-relative " to="/cart">
                     Cart
                     <span
-                      className="position-absolute  bg-danger text-white w-10 h-10 rounded text-center"
+                      className="position-absolute  bg-danger text-white w-10 h-10  text-center"
                       style={{
                         width: "23px",
                         height: "23px",
                         top: "-6px",
-                        borderRaduis: "50%",
+                        borderRadius: "50%",
                       }}
                     >
                       {ProductCount?.numOfCartItems}
