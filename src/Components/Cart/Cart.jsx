@@ -6,7 +6,7 @@ import { toast } from "react-hot-toast";
 function Cart() {
   const [isLoading, setisLoading] = useState(false);
   const [Cartdetails, setCartdetails] = useState(null);
-  const { GetCard, removeCart } = useContext(Counter);
+  const { GetCard, removeCart, UpdateCartQuantity } = useContext(Counter);
 
   async function getloggedcart() {
     setisLoading(true);
@@ -24,7 +24,17 @@ function Cart() {
 
   async function deleteProduct(productId) {
     let response = await removeCart(productId);
-    toast.success("Product was removed successfully", {duration: 1500});
+    toast.success("Product was removed successfully", { duration: 1500 });
+    setCartdetails(response.data.data);
+
+    console.log(response);
+  }
+  async function updateCart(productId, count) {
+    let response = await UpdateCartQuantity(productId, count);
+    if (count < 0 || count === 0) {
+      
+      toast.error("Cart quantity equal to zero");
+    }
     setCartdetails(response.data.data);
 
     console.log(response);
@@ -70,9 +80,23 @@ function Cart() {
                         </button>
                       </div>
                       <div>
-                        <button className="btn border-main btn-sm">+</button>
+                        <button
+                          onClick={() =>
+                            updateCart(product.product._id, product.count + 1)
+                          }
+                          className="btn border-main btn-sm bg-info"
+                        >
+                          +
+                        </button>
                         <span className="mx-2">{product.count}</span>
-                        <button className="btn border-main btn-sm">-</button>
+                        <button
+                          onClick={() =>
+                            updateCart(product.product._id, product.count - 1)
+                          }
+                          className="btn border-main btn-sm bg-info"
+                        >
+                          -
+                        </button>
                       </div>
                     </div>
                   </div>

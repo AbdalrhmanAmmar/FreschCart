@@ -25,7 +25,7 @@ function CounterContext(props) {
     return axios
       .get(
         `https://ecommerce.routemisr.com/api/v1/Cart`,
-       
+
         {
           headers: headers,
         }
@@ -45,8 +45,26 @@ function CounterContext(props) {
       .then((response) => response)
       .catch((error) => error);
   }
+  function UpdateCartQuantity(productId, count) {
+    return axios
+      .put(
+        `https://ecommerce.routemisr.com/api/v1/Cart/${productId}`,
+
+        {
+          count: count,
+        },
+
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  }
   return (
-    <Counter.Provider value={{ Addtocard, GetCard, removeCart }}>
+    <Counter.Provider
+      value={{ Addtocard, GetCard, removeCart, UpdateCartQuantity }}
+    >
       {props.children}
     </Counter.Provider>
   );
