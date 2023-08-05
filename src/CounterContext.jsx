@@ -33,8 +33,20 @@ function CounterContext(props) {
       .then((response) => response)
       .catch((error) => error);
   }
+  function removeCart(productId) {
+    return axios
+      .delete(
+        `https://ecommerce.routemisr.com/api/v1/Cart/${productId}`,
+
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  }
   return (
-    <Counter.Provider value={{ Addtocard, GetCard }}>
+    <Counter.Provider value={{ Addtocard, GetCard, removeCart }}>
       {props.children}
     </Counter.Provider>
   );

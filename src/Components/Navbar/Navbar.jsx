@@ -3,6 +3,7 @@ import "./Navbar.module.css";
 import logo from "/images/freshcart-logo.svg";
 import { useContext, useEffect, useState } from "react";
 import { Counter } from "../../CounterContext";
+import { toast } from "react-hot-toast";
 
 function Navbar({ userData, LogOut }) {
   const [ProductCount, setProductCount] = useState(null);
@@ -11,6 +12,7 @@ function Navbar({ userData, LogOut }) {
   async function getloggedcart() {
     let response = await GetCard();
     if (response?.data?.status === "success") {
+      
       setProductCount(response.data);
     }
     console.log(ProductCount.numOfCartItems);
