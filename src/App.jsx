@@ -10,8 +10,8 @@ import ProtectRoute from "./Components/ProtectRoute/ProtectRoute";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import Cart from "./Components/Cart/Cart";
 import CounterContext from "./CounterContext";
-import toast, { Toaster } from "react-hot-toast";
-
+import Checkout from "./Components/Checkout/Checkout";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   useEffect(() => {
@@ -50,6 +50,14 @@ function App() {
           ),
         },
         {
+          path: "/chekout ",
+          element: (
+            <ProtectRoute>
+              <Checkout />
+            </ProtectRoute>
+          ),
+        },
+        {
           path: "/cart",
           element: (
             <ProtectRoute>
@@ -67,7 +75,7 @@ function App() {
   return (
     <div>
       <CounterContext>
-        <Toaster/>
+        <Toaster />
         <RouterProvider router={router} />
       </CounterContext>
     </div>

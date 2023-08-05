@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "./Cart.module.css";
 import { Counter } from "../../CounterContext";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const [isLoading, setisLoading] = useState(false);
@@ -32,7 +33,6 @@ function Cart() {
   async function updateCart(productId, count) {
     let response = await UpdateCartQuantity(productId, count);
     if (count < 0 || count === 0) {
-      
       toast.error("Cart quantity equal to zero");
     }
     setCartdetails(response.data.data);
@@ -101,6 +101,9 @@ function Cart() {
                     </div>
                   </div>
                 ))}
+                <button className="btn bg-main  text-white ">
+                  <Link to="/chekout">chekout</Link>
+                </button>
               </div>
             </>
           ) : null}

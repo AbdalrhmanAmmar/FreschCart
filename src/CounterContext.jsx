@@ -61,9 +61,31 @@ function CounterContext(props) {
       .then((response) => response)
       .catch((error) => error);
   }
+  function OnlinePayment(productId, shippingAddress) {
+    return axios
+      .post(
+        `https://ecommerce.routemisr.com/api/v1/Cart/${productId}`,
+
+        {
+          shippingAddress: shippingAddress
+        },
+
+        {
+          headers: headers,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  }
   return (
     <Counter.Provider
-      value={{ Addtocard, GetCard, removeCart, UpdateCartQuantity }}
+      value={{
+        Addtocard,
+        GetCard,
+        removeCart,
+        UpdateCartQuantity,
+        OnlinePayment,
+      }}
     >
       {props.children}
     </Counter.Provider>
