@@ -50,7 +50,7 @@ function App() {
           ),
         },
         {
-          path: "/chekout ",
+          path: "/chekout",
           element: (
             <ProtectRoute>
               <Checkout />
