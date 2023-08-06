@@ -1,9 +1,8 @@
 import { useFormik } from "formik";
 import "./Checkout.module.css";
 function Checkout() {
-  function handelsubmit(value) {
-    console.log(value);
-    console.log("hello");
+  function handleSubmit(values) {
+    console.log(values);
   }
   let formik = useFormik({
     initialValues: {
@@ -11,7 +10,7 @@ function Checkout() {
       city: "",
       phone: "",
     },
-    onSubmit: handelsubmit(),
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -45,10 +44,10 @@ function Checkout() {
             value={formik.values.phone}
             onChange={formik.handleChange}
           />
+          <button type="submit" className="btn bg-main w-100 my-3 text-white">
+            Pay
+          </button>
         </form>
-        <button type="submit" className="btn bg-main w-100 my-3 text-white">
-          Pay
-        </button>
       </div>
     </>
   );
