@@ -1,8 +1,13 @@
 import { useFormik } from "formik";
 import "./Checkout.module.css";
+import { useContext } from "react";
+import { Counter } from "../../CounterContext";
+
 function Checkout() {
-  function handleSubmit(values) {
-    console.log(values);
+  const { OnlinePayment } = useContext(Counter);
+  async function handleSubmit(values) {
+    let response = await OnlinePayment("6428ebc6dc1175abc65ca0b9", values);
+    console.log(response);
   }
   let formik = useFormik({
     initialValues: {

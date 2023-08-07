@@ -61,13 +61,13 @@ function CounterContext(props) {
       .then((response) => response)
       .catch((error) => error);
   }
-  function OnlinePayment(productId, shippingAddress) {
+  function OnlinePayment(CartId, shippingAddress) {
     return axios
       .post(
-        `https://ecommerce.routemisr.com/api/v1/Cart/${productId}`,
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${CartId}?url=http://127.0.0.1:5173/`,
 
         {
-          shippingAddress: shippingAddress
+          shippingAddress: shippingAddress,
         },
 
         {
