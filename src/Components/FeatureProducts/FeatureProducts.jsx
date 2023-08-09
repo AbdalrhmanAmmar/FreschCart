@@ -6,11 +6,12 @@ import { Counter } from "../../CounterContext";
 import { toast } from "react-hot-toast";
 
 function FeatureProducts() {
-  let { Addtocard } = useContext(Counter);
+  let { Addtocard, setCartnumber } = useContext(Counter);
 
   async function Addproduct(productId) {
     let response = await Addtocard(productId);
     if (response.data.status === "success") {
+      setCartnumber(response.data.numOfCartItems);
       toast.success(response.data.message, { duration: 2000 });
     }
     console.log(response);

@@ -4,10 +4,12 @@ import { useContext } from "react";
 import { Counter } from "../../CounterContext";
 
 function Checkout() {
-  const { OnlinePayment } = useContext(Counter);
+  const { OnlinePayment, CartId } = useContext(Counter);
   async function handleSubmit(values) {
-    let response = await OnlinePayment( values);
-    console.log(response);
+    let response = await OnlinePayment(CartId, values);
+    if (response?.data?.status === "success") {
+      window.location.href = response.data.session.url;
+    }
   }
   let formik = useFormik({
     initialValues: {

@@ -1,9 +1,24 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export let Counter = createContext();
 
 function CounterContext(props) {
+  const [CartId, setCartId] = useState(null);
+  const [Cartnumber, setCartnumber] = useState(0);
+
+  async function getloggedcart() {
+    let response = await GetCard();
+    if (response.status === 200) {
+      console.log(response);
+      setCartId(response.data.data._id);
+      setCartnumber(response.data.numOfCartItems);
+    }
+  }
+  useEffect(() => {
+    getloggedcart();
+  }, []);
+
   let headers = {
     token: localStorage.getItem("usertocken"),
   };
@@ -85,6 +100,9 @@ function CounterContext(props) {
         removeCart,
         UpdateCartQuantity,
         OnlinePayment,
+        CartId,
+        Cartnumber,
+        setCartnumber,
       }}
     >
       {props.children}

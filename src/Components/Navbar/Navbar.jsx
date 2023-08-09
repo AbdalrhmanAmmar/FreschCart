@@ -6,24 +6,11 @@ import { Counter } from "../../CounterContext";
 import { toast } from "react-hot-toast";
 
 function Navbar({ userData, LogOut }) {
-  const [ProductCount, setProductCount] = useState(null);
-  let { GetCard } = useContext(Counter);
+  let { Cartnumber } = useContext(Counter);
 
-  async function getloggedcart() {
-    let response = await GetCard();
-    if (response?.data?.status === "success") {
-      
-      setProductCount(response.data);
-    }
-    console.log(ProductCount.numOfCartItems);
-  }
-
-  useEffect(() => {
-    getloggedcart();
-  }, []);
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light  ">
+      <nav className="navbar fixed-top navbar-expand-sm navbar-light bg-light  ">
         <div className="container ">
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="" />
@@ -54,15 +41,15 @@ function Navbar({ userData, LogOut }) {
                   <Link className="nav-link position-relative " to="/cart">
                     Cart
                     <span
-                      className="position-absolute  bg-danger text-white w-10 h-10  text-center"
+                      className="position-absolute  bg-success text-white w-10 h-10  text-center"
                       style={{
-                        width: "23px",
-                        height: "23px",
+                        width: "18px",
+                        height: "18px",
                         top: "-6px",
                         borderRadius: "50%",
                       }}
                     >
-                      {ProductCount?.numOfCartItems}
+                      {Cartnumber}
                     </span>
                   </Link>
                 </li>
