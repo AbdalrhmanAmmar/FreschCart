@@ -12,6 +12,7 @@ import Cart from "./Components/Cart/Cart";
 import CounterContext from "./CounterContext";
 import Checkout from "./Components/Checkout/Checkout";
 import { Toaster } from "react-hot-toast";
+import { Offline, Online } from "react-detect-offline";
 
 function App() {
   useEffect(() => {
@@ -75,6 +76,13 @@ function App() {
   return (
     <div>
       <CounterContext>
+        <Offline>
+          {" "}
+          <div className="network">
+            You are Offline now Check from your internet
+          </div>
+        </Offline>
+
         <Toaster />
         <RouterProvider router={router} />
       </CounterContext>

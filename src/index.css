@@ -110,3 +110,14 @@ a:hover {
   border-radius: 13px;
   padding: 10px 0;
 }
+
+.network {
+  padding: 20px;
+  background-color: var(--main-color);
+  color: var(--light-color);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99999;
+  box-shadow: var(--shadow);
+}
