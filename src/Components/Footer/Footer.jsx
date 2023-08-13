@@ -1,10 +1,9 @@
 import "./Footer.module.css";
 
 function Footer() {
-
   return (
     <>
-      <h1>hello</h1>
+      <h1>Footer</h1>
     </>
   );
 }

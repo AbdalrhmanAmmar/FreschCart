@@ -3,6 +3,7 @@ import "./Cart.module.css";
 import { Counter } from "../../CounterContext";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function Cart() {
   const [isLoading, setisLoading] = useState(false);
@@ -42,6 +43,9 @@ function Cart() {
 
   return (
     <>
+      <Helmet>
+        <title>Cart Details</title>
+      </Helmet>
       {isLoading ? (
         <div className="container d-flex justify-content-center align-items-center vh-100">
           <span className="loader"></span>
